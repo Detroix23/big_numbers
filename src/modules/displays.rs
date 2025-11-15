@@ -31,3 +31,16 @@ pub fn digit_list(number: u32) -> Vec<char> {
 
     list
 }
+
+/// Return a string of a `number` separated on the thousands by a `separator`.   
+/// Uses an answer on [StackOverflow](https://stackoverflow.com/a/67834588)   
+pub fn thousand_separators(number: String, separator: &str) -> String {
+    number
+        .as_bytes()
+        .rchunks(3)
+        .rev()
+        .map(std::str::from_utf8)
+        .collect::<Result<Vec<&str>, _>>()
+        .unwrap()
+        .join(separator)
+}
